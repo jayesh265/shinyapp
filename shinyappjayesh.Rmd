@@ -1,0 +1,31 @@
+---
+title: "R Markdown-Leaflet"
+author: "Jayesh Kumar Rout"
+date: "20/10/2020"
+output: html_document
+---
+
+```{r chunk1}
+place <- c("University of Pennsylvania", "Chicago")
+
+place_links <- c("<a href='https://www.upenn.edu/'>Home</a>", "<a href='https://www.uchicago.edu/'>Primary</a>")
+
+
+lat <- c(39.9522, 41.7886)
+
+lng <- c(75.1932, 87.5987)
+
+df <- data.frame(place, lat, lng,place_links)
+library(leaflet)
+df %>%
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(lat=lat,lng=lng,popup=place_links,clusterOptions=markerClusterOptions)
+```
+
+library(leaflet)
+
+m <- leaflet() %>%
+  addTiles() %>%  # Add default OpenStreetMap map tiles
+  addMarkers(lng=174.768, lat=-36.852, popup="The birthplace of R")
+
